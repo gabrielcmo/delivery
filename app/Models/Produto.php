@@ -9,10 +9,16 @@ class Produto extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $guarded = [
+        'img',
         'nome',
         'valor',
         'categoria',
         'qtd'
     ];
+    
+    public function categoria()
+    {
+        return $this->hasOne('App\CategoriaProduto');
+    }
 }

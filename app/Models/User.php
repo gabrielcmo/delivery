@@ -19,6 +19,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'endereco_id',
+        'role_id',
         'email',
         'password',
     ];
@@ -41,4 +43,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function endereco(){
+        return $this->hasOne('App\Endereco');
+    }
+
+    public function pedidos(){
+        return $this->hasMany('App\Pedido');
+    }
+
+    public function role(){
+        return $this->hasOne('App\UserRole');
+    }
 }
