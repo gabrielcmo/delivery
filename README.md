@@ -1,3 +1,9 @@
+## Tutorial
+
+- Crie um banco de dados com o nome "padariamirante".
+- Rode os comandos: "npm install" e em seguida "php artisan migrate:fresh --seed"
+- E para iniciar o servidor: "php artisan serve"
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
