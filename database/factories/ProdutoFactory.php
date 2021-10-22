@@ -28,7 +28,7 @@ class ProdutoFactory extends Factory
             'valor' => rand(5,80),
             'descricao' => $this->faker->name(),
             'qtd_estoque' => rand(2,30),
-            'categoria_id' => rand(1,8)
+            'categoria_id' => rand(1,5)
         ];
     }
 }
