@@ -9,15 +9,20 @@
         text-decoration: none;
         z-index: 0;
         overflow: hidden;
-        border: 1.8px solid #cccccc;
-        transition: 0.2s;
+        border: 1.8px solid #e0cece;
+        transition: 0.3s;
     }
 
-    .card-produto:hover {
-        transition: all 0.2s ease-out;
-        box-shadow: 0px 3px 5px rgba(38, 38, 38, 0.2);
+    .cart-button {
+        zoom: 1.1;
+    }
+
+    .cart-button:hover {
+        transition: all 0.25s ease-out;
+        box-shadow: 1px 3px 5px rgba(19, 19, 19, 0.2);
         top: -1.5px;
-        border: 1.8px solid #979797;
+        border: 1.8px solid #444343;
+        color: #0c9207;
     }
 
     .nav-tabs > li > a.active{
@@ -26,6 +31,9 @@
     }
 </style>
 <div class="container-fluid">
+    <div class="d-flex justify-content-center mt-4 mb-5">
+        <img class="img-thumbnail" src="{{ asset('/imgs/logo.jpg') }}" width="250px" alt="">
+    </div>
     <div class="d-flex justify-content-center mt-4 mb-4">
         <h1>Cardápio</h1>
     </div>
@@ -33,7 +41,7 @@
         <div class="col-10">
             <div class="card mb-4">
                 <div class="card-header">
-                    <ul class="nav nav-tabs card-header-tabs">
+                    <ul class="nav nav-tabs dark card-header-tabs">
                         @php $categorias = App\Models\CategoriaProduto::all() @endphp
 
                         @foreach ($categorias as $item_categoria)
@@ -44,32 +52,37 @@
                     </ul>
                 </div>
                 <div class="card-body tab-content">
-                        @foreach ($categorias as $item_categoria)
+                    @foreach ($categorias as $item_categoria)
                         <div class="tab-pane @if($item_categoria->id == 1) show active @endif" id="tab{{ $item_categoria->id }}">
-
                             <div class="row">
-                            @foreach (App\Models\Produto::all()->where('categoria_id', $item_categoria->id) as $produto)
+                                @foreach (App\Models\Produto::all()->where('categoria_id', $item_categoria->id) as $produto)
                                     <div class="col-auto mt-2 mb-4">
                                         <div class="card card-produto" style="width: 220px;height: 300px;">
                                             <div class="card-body">
                                                 <img class="w-100 rounded border" src="https://static.vecteezy.com/ti/vetor-gratis/p1/89131-de-desenhos-animados-de-fast-food-gr%C3%A1tis-vetor.jpg" alt="Card image cap">
-                                                <h5 class="card-title mt-3">{{ $produto->nome }}</h5>
-                                                <p class="card-text">{{ $produto->descricao }}</p>
+                                                <h5 class="card-title mt-1">{{ $produto->nome }}</h5>
+                                                <p class="card-text">
+                                                    {{ $produto->descricao }}
+                                                    <br>
+                                                    <small class="text-muted">
+                                                        {{ $produto->qtd_estoque }} unidades restantes
+                                                    </small>
+                                                </p>
                                             </div>
                                             <div class="card-footer row">
-                                                    <div class="col-6">
-                                                        R${{ $produto->valor }}.00
-                                                    </div>
-                                                    <div class="col-6 mt-1 d-flex justify-content-end">   
-                                                        <i class="fas fa-shopping-cart"></i>
-                                                    </div>
+                                                <div class="col-6">
+                                                    R${{ $produto->valor }}.00
+                                                </div>
+                                                <div class="col-6 mt-1 d-flex justify-content-end">   
+                                                    <a class="button rounded-circle border cart-button" href="{{ route('addCarrinho', $produto->id) }}"><i class="fas fa-shopping-cart"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
-                        @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>

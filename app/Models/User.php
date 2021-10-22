@@ -19,7 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'endereco_id',
+        'cpf',
         'role_id',
         'email',
         'password',
@@ -45,14 +45,14 @@ class User extends Authenticatable
     ];
 
     public function endereco(){
-        return $this->hasOne('App\Endereco');
+        return $this->hasOne('App\Models\Endereco');
     }
 
     public function pedidos(){
-        return $this->hasMany('App\Pedido');
+        return $this->hasMany('App\Models\Pedido');
     }
 
     public function role(){
-        return $this->hasOne('App\UserRole');
+        return $this->belongsTo('App\Models\UserRole');
     }
 }

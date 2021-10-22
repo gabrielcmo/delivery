@@ -10,6 +10,7 @@ class Endereco extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'cidade',
         'rua',
         'bairro',
@@ -18,6 +19,6 @@ class Endereco extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 }
