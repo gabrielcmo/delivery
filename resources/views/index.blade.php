@@ -31,6 +31,10 @@
     }
 </style>
 <div class="container-fluid">
+    
+    {{-- @php
+    dd(Auth::user()->role->nome)
+@endphp --}}
     <div class="d-flex justify-content-center mt-4 mb-5">
         <img class="img-thumbnail" src="{{ asset('/imgs/logo.jpg') }}" width="250px" alt="">
     </div>

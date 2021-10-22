@@ -76,6 +76,7 @@
                         </div>
 
                         <div class="form-group row mb-0">
+                            <input type="hidden" name="role_id" value="1">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}

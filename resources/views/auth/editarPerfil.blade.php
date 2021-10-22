@@ -55,6 +55,19 @@
                         </div>
                     </div>
                     <div class="card-header border">{{ __('Endereço') }}</div>
+                    @php
+                        if($user->endereco !== null){
+                            $cidade = $user->endereco->cidade;
+                            $rua = $user->endereco->rua;
+                            $bairro = $user->endereco->bairro;
+                            $numero = $user->endereco->numero;
+                        } else {
+                            $cidade = "";
+                            $rua = "";
+                            $bairro = ""; 
+                            $numero = ""; 
+                        }
+                    @endphp
                     <div class="card-body">
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right" for="selectCidade">Cidade</label>
@@ -69,7 +82,7 @@
 
                             <div class="col-md-6">
                                 <input id="rua" type="text" class="form-control @error('rua') is-invalid @enderror" name="rua" autocomplete="Rua" 
-                                    value="{{ $user->endereco->rua }}">
+                                    value="{{ $rua }}">
                                 @error('rua')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -82,7 +95,7 @@
 
                             <div class="col-md-6">
                                 <input id="bairro" type="text" class="form-control @error('bairro') is-invalid @enderror" name="bairro" autocomplete="Bairro" 
-                                    value="{{ $user->endereco->bairro }}">
+                                    value="{{ $bairro }}">
 
                                 @error('bairro')
                                     <span class="invalid-feedback" role="alert">
@@ -96,7 +109,7 @@
 
                             <div class="col-md-6">
                                 <input id="numero" type="text" class="form-control @error('numero') is-invalid @enderror" name="numero" autocomplete="Número" 
-                                    value="{{ $user->endereco->numero }}">
+                                    value="{{ $numero }}">
 
                                 @error('rua')
                                     <span class="invalid-feedback" role="alert">
@@ -107,6 +120,7 @@
                         </div>
                     </div>
                     <div class="card-footer mb-0">
+                        <input type="hidden" name="role_id" value="1" disabled>
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-success">
                                 {{ __('Salvar') }}

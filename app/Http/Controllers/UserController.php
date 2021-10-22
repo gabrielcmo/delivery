@@ -24,8 +24,13 @@ class UserController extends Controller
             'numero' => ['integer']
         ]);
 
+        if(Auth::user()->role->id !== 2){
+            $data['role_id'] = 1;
+        }
+
         $user->name = $data['name'];
         $user->cpf = $data['cpf'];
+        $user->role_id = $data['role_id'];
         $user->email = $data['email'];
 
         if($user->endereco == null){
