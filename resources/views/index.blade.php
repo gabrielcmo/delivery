@@ -61,9 +61,9 @@
                             <div class="row">
                                 @foreach (App\Models\Produto::all()->where('categoria_id', $item_categoria->id) as $produto)
                                     <div class="col-auto mt-2 mb-4">
-                                        <div class="card card-produto" style="width: 220px;height: 300px;">
+                                        <div class="card card-produto" style="width: 300px;height: 400px;">
                                             <div class="card-body">
-                                                <img class="w-100 rounded border" src="https://static.vecteezy.com/ti/vetor-gratis/p1/89131-de-desenhos-animados-de-fast-food-gr%C3%A1tis-vetor.jpg" alt="Card image cap">
+                                                <img class="card-img-top rounded border" style="height: 150px; width:auto;" src="{{ asset("/imgs/$produto->img") }}" alt="Card image cap">
                                                 <h5 class="card-title mt-1">{{ $produto->nome }}</h5>
                                                 <p class="card-text">
                                                     {{ $produto->descricao }}

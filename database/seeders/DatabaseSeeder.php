@@ -14,13 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('user_roles')->insert([
             ['nome' => 'Cliente'],
             ['nome' => 'Motoboy'],
             ['nome' => 'Admin']
         ]);
-
-        \App\Models\User::factory(10)->create();
 
         DB::table('categoria_produtos')->insert([['nome' => "Pães"], ['nome' => "Bolos e Tortas"],
             ['nome' => "Salgados"],['nome' => "Doces"], ['nome' => "Bebidas"]
@@ -30,6 +29,8 @@ class DatabaseSeeder extends Seeder
             ['nome' => "Dinheiro"], ['nome' => "Cartão"]
         );
 
-        \App\Models\Produto::factory(40)->create();
+        $this->call([
+            Produtos::class
+        ]);
     }
 }
