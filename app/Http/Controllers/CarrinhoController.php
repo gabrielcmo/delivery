@@ -23,7 +23,9 @@ class CarrinhoController extends Controller
             'name' => $produto->nome,
             'price' => $produto->valor,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => array(
+                'img' => $produto->img
+            ),
             'associatedModel' => $produto
         ));
         

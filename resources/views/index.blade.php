@@ -31,10 +31,6 @@
     }
 </style>
 <div class="container-fluid">
-    
-    {{-- @php
-    dd(Auth::user()->role->nome)
-@endphp --}}
     <div class="d-flex justify-content-center mt-4 mb-5">
         <img class="img-thumbnail" src="{{ asset('/imgs/logo.jpg') }}" width="250px" alt="">
     </div>
@@ -58,12 +54,14 @@
                 <div class="card-body tab-content">
                     @foreach ($categorias as $item_categoria)
                         <div class="tab-pane @if($item_categoria->id == 1) show active @endif" id="tab{{ $item_categoria->id }}">
-                            <div class="row">
+                            <div class="row d-flex justify-content-center">
                                 @foreach (App\Models\Produto::all()->where('categoria_id', $item_categoria->id) as $produto)
                                     <div class="col-auto mt-2 mb-4">
                                         <div class="card card-produto" style="width: 300px;height: 400px;">
                                             <div class="card-body">
-                                                <img class="card-img-top rounded border" style="height: 150px; width:auto;" src="{{ asset("/imgs/$produto->img") }}" alt="Card image cap">
+                                                <div class="d-flex justify-content-center mb-4">
+                                                    <img class="card-img-top rounded border" style="height: 150px; width:auto;" src="{{ asset("/imgs/$produto->img") }}" alt="Card image cap">
+                                                </div>
                                                 <h5 class="card-title mt-1">{{ $produto->nome }}</h5>
                                                 <p class="card-text">
                                                     {{ $produto->descricao }}
