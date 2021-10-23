@@ -17,6 +17,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::middleware(['auth'])->group(function () {
     // Rotas Carrinho
+    Route::get("/carrinho", [App\Http\Controllers\CarrinhoController::class, 'view'])
+        ->name('viewCarrinho');
     Route::get("/carrinho/add/{product_id}", [App\Http\Controllers\CarrinhoController::class, 'adicionar'])
         ->name('addCarrinho');
     Route::get('/carrinho/limpar', [App\Http\Controllers\CarrinhoController::class, 'limpar'])

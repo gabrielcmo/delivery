@@ -21,13 +21,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    @auth
-        @php
-            $user = Auth::user()->id;
-            $carrinho = \Cart::session($user);
-        @endphp
-    @endauth
-    
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #a01b1e;">
             <div class="container">
@@ -61,7 +54,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="modal" data-target="#carrinhoModal" role="button" v-pre>
+                                <a class="nav-link" href="{{ route('viewCarrinho') }}" role="button" v-pre>
                                     <i class="fas fa-shopping-cart"></i>
                                     {{ \Cart::session(Auth::user()->id)->getTotalQuantity() }}
                                 </a>
@@ -94,56 +87,5 @@
         <main class="py-4">
             @yield('content')
         </main>
-        
-        <!-- Carrinho Modal -->
-        <div class="modal fade" id="carrinhoModal" tabindex="-1" role="dialog" aria-labelledby="carrinhoModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="carrinhoModalLabel">Carrinho</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    @guest 
-                        @php redirect()->route('login') @endphp
-                    @else
-                        @if ($carrinho->getTotalQuantity() == 0)
-                            Você não tem nenhum item no carrinho ainda.
-                        @else
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Valor</th>
-                                    <th scope="col">Quantidade</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($carrinho->getContent() as $item)
-                                        <tr>
-                                            <th scope="row"><img src="{{ $item->img }}" alt="Imagem produto {{$item->id}}" width="50px"></th>
-                                            <td>{{$item->name}}</td>
-                                            <td>{{$item->price}}</td>
-                                            <td>{{$item->quantity}}</td>
-                                            <td>{{$item->price*$item->quantity}}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <a type="button" href="{{ route('limparCarrinho') }}" class="btn btn-danger">Limpar carrinho</a>
-                            <button type="button" class="btn btn-success">Atualizar carrinho</button>
-                        </div>
-                        @endif
-                    @endguest
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>

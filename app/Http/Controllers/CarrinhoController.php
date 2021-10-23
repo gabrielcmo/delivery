@@ -8,6 +8,10 @@ use App\Models\Produto;
 
 class CarrinhoController extends Controller
 {
+    public function view(){
+        return view('carrinho');
+    }
+
     public function adicionar(Request $request, $product_id){
         $user = Auth::user();
         $carrinho = \Cart::session($user->id);
