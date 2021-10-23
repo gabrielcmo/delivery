@@ -30,6 +30,9 @@ Route::middleware(['auth'])->group(function () {
     })->name('editarPerfilView');
 
     Route::post('/user/edit', [App\Http\Controllers\UserController::class, 'update'])->name('editarPerfil');
+
+    // Rotas Pedido
+    Route::post('/checkout/pedido', [App\Http\Controllers\CarrinhoController::class, 'atualizar'])->name('checkoutPedido');
 });
 
 // Rota Usuário

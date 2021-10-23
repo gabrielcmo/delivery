@@ -41,6 +41,20 @@ class CarrinhoController extends Controller
     }
 
     public function atualizar(Request $request){
+        $user = Auth::user();
+        $carrinho = \Cart::session($user->id);
+        
+        foreach ($carrinho->getContent() as $item) {
+            $qtd = "qtd{$item->associatedModel->id}";
 
+            $carrinho->update($item->id, [
+                'quantity' => array(
+                    'relative' => false,
+                    'value' => $request->$qtd
+                )
+            ]);
+        }
+
+        return view('checkoutPedido');
     }
 }
