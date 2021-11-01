@@ -6,8 +6,18 @@
     $carrinho = \Cart::session($user);
 @endphp
 <div class="container">
+    <div class="row">
+        <div class="col-md-12 mb-2">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Cardápio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Carrinho</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Carrinho') }}</div>
 

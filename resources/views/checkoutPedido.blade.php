@@ -2,33 +2,111 @@
 
 @section('content')
 @php
-    $user = Auth::user()->id;
-    $carrinho = \Cart::session($user);
+    $user = Auth::user();
+    $carrinho = \Cart::session($user->id);
 @endphp
-<div class="container">
-    <div class="row justify-content-end">
-        <div class="col-md-6">
+<style>
+    #thead-carrinho {
+        font-size: 85%;
+    }
 
+    #tbody-carrinho {
+        font-size: 75%;
+    }
+
+    #card-footer-carrinho {
+        font-size: 85%;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mb-2">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Cardápio</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('viewCarrinho') }}">Carrinho</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Pedido</li>
+                </ol>
+            </nav>
         </div>
-        <div class="col-md-6">
+
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Endereço') }}</div>
+
+                <div class="card-body">
+                    @if ($user->endereco == null)
+                        <a type="button" href="{{ route('editarPerfilView') }}" class="btn btn-success mr-2">Adicionar endereço de entrega</a>
+                    @else
+                        <table class="table">
+                            <thead>
+                                <tr class="text-center">
+                                    {{-- <th scope="col"></th> --}}
+                                    <th scope="col">Rua</th>
+                                    <th scope="col">Número</th>
+                                    <th scope="col">Bairro</th>
+                                    <th scope="col">Cidade</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center">
+                                    <td>{{$user->endereco->rua}}</td>
+                                    <td>{{$user->endereco->numero}}</td>
+                                    <td>{{$user->endereco->bairro}}</td>
+                                    <td>{{$user->endereco->cidade}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    @endif
+                </div>
+            </div>
+            
+            <div class="card mb-4 mt-4">
+                <div class="card-header">{{ __('Método de Pagamento') }}</div>
+
+                <div class="card-body">
+                    <form id="MetodoDePagamento" action="endCheckoutPedido" method="get">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="metodoPagamento" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Dinheiro
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="metodoPagamento" id="flexRadioDefault2">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Cartão de crédito
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="metodoPagamento" id="flexRadioDefault3">
+                            <label class="form-check-label" for="flexRadioDefault3">
+                                Cartão de débito
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-md-4 justify-content-end">
             <div class="card">
                 <div class="card-header">{{ __('Carrinho') }}</div>
 
                 <div class="card-body">
                         <table class="table">
-                            <thead>
-                            <tr class="text-center">
-                                {{-- <th scope="col"></th> --}}
-                                <th scope="col">Produto</th>
-                                <th scope="col">Valor</th>
-                                <th scope="col" class="text-center">Quantidade</th>
-                                <th scope="col">Total</th>
-                            </tr>
+                            <thead id="thead-carrinho">
+                                <tr class="text-center">
+                                    <th scope="col">Produto</th>
+                                    <th scope="col">Valor</th>
+                                    <th scope="col" class="text-center">Quantidade</th>
+                                    <th scope="col">Total</th>
+                                </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tbody-carrinho">
                                     @foreach($carrinho->getContent() as $item)
                                         <tr class="text-center">
-                                            {{-- <th scope="row"><img class="rounded" src="{{ asset("/imgs/{$item->associatedModel->img}") }}" alt="Imagem produto {{$item->id}}" width="50px"></th> --}}
                                             <td>{{$item->name}}</td>
                                             <td>R${{$item->price}}</td>
                                             <td>{{$item->quantity}}</td>
@@ -38,10 +116,16 @@
                             </tbody>
                         </table>
                 </div>
-                <div class="card-footer d-flex justify-content-end">
-                    <strong>Total: &nbsp; R${{$carrinho->getTotal()}}</strong>
+                <div class="card-footer" id="card-footer-carrinho">
+                    <div class="d-flex justify-content-end">Sub total: &nbsp; R${{$carrinho->getTotal()}}</div>
+                    <div class="d-flex justify-content-end">Taxa de entrega: &nbsp; R$4,00</div>
+                    <strong class="d-flex justify-content-end">Total: &nbsp; R${{$carrinho->getTotal() + 4}}</strong>
                 </div>
             </div>
+        </div>
+        
+        <div class="col-md-12 mt-4 d-flex justify-content-end align-self-end">
+            <button type="submit" form="MetodoDePagamento" class="btn btn-success">Finalizar pedido</button>
         </div>
     </div>
 </div>
