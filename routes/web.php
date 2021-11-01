@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('addCarrinho');
     Route::get('/carrinho/limpar', [App\Http\Controllers\CarrinhoController::class, 'limpar'])
         ->name('limparCarrinho');
+    Route::post('/checkout/pedido', [App\Http\Controllers\CarrinhoController::class, 'atualizar'])->name('checkoutPedido');
 
     // Rotas Usuário
     Route::get('/editar', function () {
@@ -32,7 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/user/edit', [App\Http\Controllers\UserController::class, 'update'])->name('editarPerfil');
 
     // Rotas Pedido
-    Route::post('/checkout/pedido', [App\Http\Controllers\CarrinhoController::class, 'atualizar'])->name('checkoutPedido');
+    Route::get('/checkout/pedido/finalizado', [App\Http\Controllers\PedidoController::class, 'fazerPedido'])->name('endCheckoutPedido');
 });
 
 // Rota Usuário

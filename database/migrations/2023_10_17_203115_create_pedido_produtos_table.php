@@ -22,6 +22,7 @@ class CreatePedidoProdutosTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->smallInteger('qtd');
+            $table->float('valor', 4, 2);
             $table->timestamps();
         });
     }

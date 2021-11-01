@@ -65,21 +65,21 @@
                 <div class="card-header">{{ __('Método de Pagamento') }}</div>
 
                 <div class="card-body">
-                    <form id="MetodoDePagamento" action="endCheckoutPedido" method="get">
+                    <form id="MetodoDePagamento" action="{{ route('endCheckoutPedido') }}" method="get">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="metodoPagamento" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" name="metodoPagamento" value="dinheiro" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 Dinheiro
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="metodoPagamento" id="flexRadioDefault2">
+                            <input class="form-check-input" type="radio" name="metodoPagamento" value="crédito" id="flexRadioDefault2">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Cartão de crédito
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="metodoPagamento" id="flexRadioDefault3">
+                            <input class="form-check-input" type="radio" name="metodoPagamento" value="débito" id="flexRadioDefault3">
                             <label class="form-check-label" for="flexRadioDefault3">
                                 Cartão de débito
                             </label>
