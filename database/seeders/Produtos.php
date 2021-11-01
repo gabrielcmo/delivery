@@ -80,7 +80,7 @@ class Produtos extends Seeder
                 'categoria_id' => 2
             ],
             [
-                'img' => "bolo-cenoura.jpg",
+                'img' => "bolo-cenoura.jpeg",
                 'nome' => "Bolo de cenoura com cobertura de brigadeiro",
                 'valor' => 30.00,
                 'descricao' => "Bolo inteiro, com 1 kg",
@@ -88,7 +88,7 @@ class Produtos extends Seeder
                 'categoria_id' => 2
             ],
             [
-                'img' => "bolo-cenoura.jpg",
+                'img' => "pedaco-bolo-cenoura.jpg",
                 'nome' => "Pedaço de bolo de cenoura com cobertura de brigadeiro",
                 'valor' => 30.00,
                 'descricao' => "Pedaço de bolo de cenoura, com 180 gramas",
@@ -104,7 +104,7 @@ class Produtos extends Seeder
                 'categoria_id' => 2
             ],
             [
-                'img' => "bolo-chocolate.jpg",
+                'img' => "pedaco-bolo-chocolate.jpg",
                 'nome' => "Pedaço de bolo de chocolate com cobertura de brigadeiro",
                 'valor' => 14.00,
                 'descricao' => "Pedaço com 180 gramas",
@@ -120,7 +120,7 @@ class Produtos extends Seeder
                 'categoria_id' => 3
             ],
             [
-                'img' => "esfiha-frango.jpg",
+                'img' => "esfiha-frango.jpeg",
                 'nome' => "Esfiha de frango",
                 'valor' => 8.00,
                 'descricao' => "",
@@ -128,7 +128,7 @@ class Produtos extends Seeder
                 'categoria_id' => 3
             ],
             [
-                'img' => "hamburguer.jpg",
+                'img' => "hamburger-carne.png",
                 'nome' => "Hamburguer de carne",
                 'valor' => 4.00,
                 'descricao' => "",
@@ -136,7 +136,7 @@ class Produtos extends Seeder
                 'categoria_id' => 3
             ],
             [
-                'img' => "hamburguer.jpg",
+                'img' => "hamburger-carne-cheddar.png",
                 'nome' => "Hamburguer de carne com cheddar",
                 'valor' => 5.00,
                 'descricao' => "",
@@ -144,7 +144,7 @@ class Produtos extends Seeder
                 'categoria_id' => 3
             ],
             [
-                'img' => "hamburguer.jpg",
+                'img' => "hamburger-duplo-cheddar.jpg",
                 'nome' => "Hamburguer duplo de carne com cheddar",
                 'valor' => 6.00,
                 'descricao' => "",
@@ -152,7 +152,7 @@ class Produtos extends Seeder
                 'categoria_id' => 3
             ],
             [
-                'img' => "hamburguer.jpg",
+                'img' => "hamburger-carne-bacon.jpg",
                 'nome' => "Hamburguer duplo de carne com bacon",
                 'valor' => 7.00,
                 'descricao' => "",
@@ -224,7 +224,7 @@ class Produtos extends Seeder
                 'categoria_id' => 4
             ],
             [
-                'img' => "",
+                'img' => "nutella.jpg",
                 'nome' => "Pote de nutella",
                 'valor' => 19.90,
                 'descricao' => "",
@@ -248,7 +248,7 @@ class Produtos extends Seeder
                 'categoria_id' => 4
             ],
             [
-                'img' => "https://source.unsplash.com/random/200x200",
+                'img' => "fini-morango.jpg",
                 'nome' => "Fini Morango Cítrico 90g",
                 'valor' => 5.90,
                 'descricao' => "",
@@ -256,7 +256,7 @@ class Produtos extends Seeder
                 'categoria_id' => 4
             ],
             [
-                'img' => "https://source.unsplash.com/random/200x200",
+                'img' => "piru-yogurte.jpeg",
                 'nome' => "Pirulito Yogurte Morango - 10 unidades",
                 'valor' => 4.90,
                 'descricao' => "",
@@ -264,7 +264,7 @@ class Produtos extends Seeder
                 'categoria_id' => 4
             ],
             [
-                'img' => "https://source.unsplash.com/random/200x200",
+                'img' => "coca-2l.jpg",
                 'nome' => "Refrigerante Coca Cola 2L",
                 'valor' => 9.00,
                 'descricao' => "",
@@ -272,7 +272,7 @@ class Produtos extends Seeder
                 'categoria_id' => 5
             ],
             [
-                'img' => "https://source.unsplash.com/random/200x200",
+                'img' => "coca-600.jpg",
                 'nome' => "Refrigerante Coca Cola 600ml",
                 'valor' => 6.00,
                 'descricao' => "",
