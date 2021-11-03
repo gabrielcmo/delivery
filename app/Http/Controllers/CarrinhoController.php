@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\Models\Produto;
 
 class CarrinhoController extends Controller
@@ -29,7 +30,7 @@ class CarrinhoController extends Controller
             'associatedModel' => $produto
         ));
         
-        return back()->with('success', 'Produto adicionado ao carrinho.');
+        return redirect()->back()->with('success', 'Produto adicionado ao carrinho.');
     }
 
     public function limpar(){

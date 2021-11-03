@@ -13,16 +13,12 @@
         transition: 0.3s;
     }
 
-    .cart-button {
-        zoom: 1.1;
-    }
-
     .cart-button:hover {
         transition: all 0.25s ease-out;
         box-shadow: 1px 3px 5px rgba(19, 19, 19, 0.2);
         top: -1.5px;
         border: 1.8px solid #444343;
-        color: #0c9207;
+        background-color: #0c9207;
     }
 
     .nav-tabs > li > a.active{
@@ -75,6 +71,9 @@
                                                 <div class="col-6">
                                                     R${{ $produto->valor }}.00
                                                 </div>
+                                                <div class="col-6 mt-1">   
+                                                    <a data-produto-id="{{ $produto->id }}" class="btn btn-success button border cart-button">Adicionar ao carrinho <i class="fas fa-shopping-cart"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -88,8 +87,11 @@
     </div>
 </div>
 <script>
+    $(document).ready(function() {
+        $(".alert-ajax").hide(); 
+    });
 
-    $('.card-produto').click(function(){
+    $('.cart-button').click(function(){
         var product_id = $(this).data('produto-id');
         const url = "{{ route('addCarrinho', ':id') }}";
         var route = url.replace(':id', product_id);
@@ -100,6 +102,14 @@
             success: function(result){
                 total = parseFloat(document.getElementById('total-carrinho').innerHTML) + 1;
                 $('#total-carrinho').html(total).fadeIn(500);
+
+                swal({
+                    text: "Produto adicionado ao carrinho",
+                    icon: 'success',
+                    type: "success",
+                    buttons: false,
+                    timer: 1500
+                });
             }
         });
     });
