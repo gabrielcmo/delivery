@@ -57,7 +57,7 @@
                             <div class="row d-flex justify-content-center">
                                 @foreach (App\Models\Produto::all()->where('categoria_id', $item_categoria->id) as $produto)
                                     <div class="col-auto mt-2 mb-4">
-                                        <div class="card card-produto" style="width: 300px;height: 400px;">
+                                        <div data-produto-id="{{$produto->id}}" class="card card-produto" style="width: 300px;height: 400px;">
                                             <div class="card-body">
                                                 <div class="d-flex justify-content-center mb-4">
                                                     <img class="card-img-top rounded border" style="height: 150px; width:auto;" src="{{ asset("/imgs/$produto->img") }}" alt="Card image cap">
@@ -75,9 +75,6 @@
                                                 <div class="col-6">
                                                     R${{ $produto->valor }}.00
                                                 </div>
-                                                <div class="col-6 mt-1 d-flex justify-content-end">   
-                                                    <a class="button rounded-circle border cart-button" href="{{ route('addCarrinho', $produto->id) }}"><i class="fas fa-shopping-cart"></i></a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -90,4 +87,22 @@
         </div>
     </div>
 </div>
+<script>
+
+    $('.card-produto').click(function(){
+        var product_id = $(this).data('produto-id');
+        const url = "{{ route('addCarrinho', ':id') }}";
+        var route = url.replace(':id', product_id);
+
+        $.ajax( {
+            url: route,
+            type: 'get',
+            success: function(result){
+                total = parseFloat(document.getElementById('total-carrinho').innerHTML) + 1;
+                $('#total-carrinho').html(total).fadeIn(500);
+            }
+        });
+    });
+
+</script>
 @endsection

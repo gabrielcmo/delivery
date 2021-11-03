@@ -12,6 +12,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/bootstrap.js') }}" defer></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -56,7 +57,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('viewCarrinho') }}" role="button" v-pre>
                                     <i class="fas fa-shopping-cart"></i>
-                                    {{ \Cart::session(Auth::user()->id)->getTotalQuantity() }}
+                                    <div id="total-carrinho">{{ \Cart::session(Auth::user()->id)->getTotalQuantity() }}</div>
                                 </a>
                             </li>
                             <li class="nav-item dropdown">

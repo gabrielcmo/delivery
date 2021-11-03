@@ -29,7 +29,7 @@ class CarrinhoController extends Controller
             'associatedModel' => $produto
         ));
         
-        return redirect()->back()->with('success', 'Produto adicionado ao carrinho.');
+        return back()->with('success', 'Produto adicionado ao carrinho.');
     }
 
     public function limpar(){

@@ -200,7 +200,7 @@ class Produtos extends Seeder
                 'categoria_id' => 3
             ],
             [
-                'img' => "",
+                'img' => "pastel-nutella.jpeg",
                 'nome' => "Pastel de nutella",
                 'valor' => 12.00,
                 'descricao' => "",
@@ -208,7 +208,7 @@ class Produtos extends Seeder
                 'categoria_id' => 4
             ],
             [
-                'img' => "",
+                'img' => "pastel-doce-leite.jpg",
                 'nome' => "Pastel de doce de leite",
                 'valor' => 9.00,
                 'descricao' => "",
@@ -216,8 +216,8 @@ class Produtos extends Seeder
                 'categoria_id' => 4
             ],
             [
-                'img' => "",
-                'nome' => "Pastel de leite ninho",
+                'img' => "pastel-ninho-nutella.jpg",
+                'nome' => "Pastel de leite ninho recheado com nutella",
                 'valor' => 9.00,
                 'descricao' => "",
                 'qtd_estoque' => 2,
@@ -232,7 +232,7 @@ class Produtos extends Seeder
                 'categoria_id' => 4
             ],
             [
-                'img' => "",
+                'img' => "doce-leite-caseiro.jpg",
                 'nome' => "Doce de leite caseiro",
                 'valor' => 12.00,
                 'descricao' => "Pote com 400 gramas",
@@ -240,7 +240,7 @@ class Produtos extends Seeder
                 'categoria_id' => 4
             ],
             [
-                'img' => "",
+                'img' => "doce-morango-rittner.jpg",
                 'nome' => "Doce Cremoso de Morango - Ritter",
                 'valor' => 18.00,
                 'descricao' => "380 gramas",
@@ -280,7 +280,7 @@ class Produtos extends Seeder
                 'categoria_id' => 5
             ],
             [
-                'img' => "https://source.unsplash.com/random/200x200",
+                'img' => "coca-lata.jpg",
                 'nome' => "Refrigerante Coca Cola lata",
                 'valor' => 4.50,
                 'descricao' => "",
@@ -288,7 +288,7 @@ class Produtos extends Seeder
                 'categoria_id' => 5
             ],
             [
-                'img' => "https://source.unsplash.com/random/200x200",
+                'img' => "ant-2l.jpg",
                 'nome' => "Refrigerante Guaraná Antáctica 2L",
                 'valor' => 8.00,
                 'descricao' => "",
@@ -296,7 +296,7 @@ class Produtos extends Seeder
                 'categoria_id' => 5
             ],
             [
-                'img' => "https://source.unsplash.com/random/200x200",
+                'img' => "ant-600.jpg",
                 'nome' => "Refrigerante Guaraná Antáctica 600ml",
                 'valor' => 6.00,
                 'descricao' => "",
@@ -304,7 +304,7 @@ class Produtos extends Seeder
                 'categoria_id' => 5
             ],
             [
-                'img' => "https://source.unsplash.com/random/200x200",
+                'img' => "ant-lata.jpg",
                 'nome' => "Refrigerante Guaraná Antáctica lata",
                 'valor' => 4.50,
                 'descricao' => "",
@@ -312,7 +312,7 @@ class Produtos extends Seeder
                 'categoria_id' => 5
             ],
             [
-                'img' => "https://source.unsplash.com/random/200x200",
+                'img' => "sprite.jpg",
                 'nome' => "Refrigerante Sprite 2L",
                 'valor' => 8.00,
                 'descricao' => "",
@@ -320,7 +320,7 @@ class Produtos extends Seeder
                 'categoria_id' => 5
             ],
             [
-                'img' => "https://source.unsplash.com/random/200x200",
+                'img' => "fanta-uva.jpg",
                 'nome' => "Refrigerante Fanta Uva 2L",
                 'valor' => 8.00,
                 'descricao' => "",
@@ -328,7 +328,7 @@ class Produtos extends Seeder
                 'categoria_id' => 5
             ],
             [
-                'img' => "https://source.unsplash.com/random/200x200",
+                'img' => "fanta-laranja.jpg",
                 'nome' => "Refrigerante Fanta Laranja 2L",
                 'valor' => 8.00,
                 'descricao' => "",
@@ -336,7 +336,7 @@ class Produtos extends Seeder
                 'categoria_id' => 5
             ],
             [
-                'img' => "https://source.unsplash.com/random/200x200",
+                'img' => "mogi-maça.jpeg",
                 'nome' => "Refrigerante Mogi Maçã 2L",
                 'valor' => 5.00,
                 'descricao' => "",
@@ -344,7 +344,7 @@ class Produtos extends Seeder
                 'categoria_id' => 5
             ],
             [
-                'img' => "https://source.unsplash.com/random/200x200",
+                'img' => "mogi-abacaxi.jpeg",
                 'nome' => "Refrigerante Mogi Abacaxi 2L",
                 'valor' => 5.00,
                 'descricao' => "",
@@ -352,7 +352,7 @@ class Produtos extends Seeder
                 'categoria_id' => 5
             ],
             [
-                'img' => "https://source.unsplash.com/random/200x200",
+                'img' => "mogi-guarana.jpeg",
                 'nome' => "Refrigerante Mogi Guaraná 2L",
                 'valor' => 5.00,
                 'descricao' => "",
