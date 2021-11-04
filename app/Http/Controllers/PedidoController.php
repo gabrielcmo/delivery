@@ -19,26 +19,36 @@ class PedidoController extends Controller
         $pedido = new Pedido();
         $pedido->user_id = $user->id;
         $pedido->metodo_pagamento_id = $request->metodoPagamento;
-        $pedido->valorTotal = $carrinho->getTotal() + $taxaEntrega;
+        $pedido->valor = $carrinho->getTotal() + $taxaEntrega;
+        $pedido->save();
         
         // Fazendo para cada item no carrinho, um item no banco de dados (tabela PedidoProdutos)
         foreach ($carrinho->getContent() as $item) {
+            // Produto associado ao carrinho
+            $produto = Produto::find($item->associatedModel->id);
+
             $produto_pedido = new PedidoProduto();
             $produto_pedido->pedido_id = $pedido->id;
             $produto_pedido->produto_id = $item->associatedModel->id;
+            $produto_pedido->nome = $produto->nome;
+            $produto_pedido->categoria_id = $produto->categoria->id;
             $produto_pedido->qtd = $item->quantity;
             $produto_pedido->valor = $item->price;
+            $produto_pedido->valor_total = $item->price*$item->quantity;
 
             // Retirando a quantidade comprada do estoque do produto
-            $produto = Produto::find($item->associatedModel->id);
             $produto->qtd_estoque -= $item->quantity;
             $produto->save();
 
             $produto_pedido->save();
         }
 
-        $pedido->save();
+        $carrinho->clear();
 
         return redirect('/')->with('success', 'Seu pedido foi realizado com sucesso');
+    }
+
+    public function pedidosView(){
+        return view('auth.pedidos');
     }
 }

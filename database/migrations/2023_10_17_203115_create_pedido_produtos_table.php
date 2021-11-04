@@ -21,8 +21,13 @@ class CreatePedidoProdutosTable extends Migration
             $table->foreignId('produto_id')->constrained('produtos')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->string('nome');
+            $table->foreignId('categoria_id')->constrained('categoria_produtos')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->smallInteger('qtd');
-            $table->float('valor', 4, 2);
+            $table->float('valor', 6, 2);
+            $table->float('valor_total', 8, 2);
             $table->timestamps();
         });
     }

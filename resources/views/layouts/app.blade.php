@@ -14,7 +14,7 @@
     <script src="{{ asset('js/bootstrap.js') }}" defer></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -56,30 +56,56 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('viewCarrinho') }}" role="button" v-pre>
+                                <a class="nav-link d-flex mt-1" href="{{ route('viewCarrinho') }}" role="button" v-pre>
                                     <i class="fas fa-shopping-cart"></i>
-                                    <div id="total-carrinho">{{ \Cart::session(Auth::user()->id)->getTotalQuantity() }}</div>
+                                    <span id="total-carrinho" class="badge badge-pill">{{ \Cart::session(Auth::user()->id)->getTotalQuantity() }}</span>
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Olá, {{ Auth::user()->name }}
                                 </a>
+                                
+                                @if(Auth::user()->role_id == 1)
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('editarPerfilView') }}">
+                                            {{ __('Meu perfil') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('pedidosView') }}">
+                                            {{ __('Meus pedidos') }}
+                                        </a>
+                                        <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('Sair') }}
+                                        </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('editarPerfilView') }}">
-                                        {{ __('Editar perfil') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Sair') }}
-                                    </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                @elseif(Auth::user()->role_id == 2)
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('vendasView') }}">
+                                            {{ __('Vendas') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('produtosView') }}">
+                                            {{ __('Produtos') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('clientesView') }}">
+                                            {{ __('Clientes') }}
+                                        </a>
+                                        <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                            {{ __('Sair') }}
+                                        </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                @endif
                             </li>
                         @endguest
                     </ul>
@@ -94,5 +120,10 @@
             
             @yield('content')
         </main>
+        <script>
+            $(document).ready(function() {
+                $('.alert').fadeIn().delay(4000).fadeOut();
+            });
+        </script>
 </body>
 </html>

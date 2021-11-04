@@ -51,14 +51,16 @@
                                     @endforeach
                             </tbody>
                         </table>
-                </div>
-                <div class="card-footer d-flex justify-content-end">
+                    </div>
+                @endif
+            </div>
+            @if ($carrinho->getTotalQuantity() !== 0)
+                <div class="mt-3 d-flex justify-content-end">
                     <a type="button" href="{{ route('limparCarrinho') }}" class="btn btn-danger mr-2">Limpar carrinho</a>
                     <button type="submit" class="btn btn-success">Fazer pedido</button>
                     </form>
                 </div>
-                @endif
-            </div>
+            @endif
         </div>
     </div>
 </div>

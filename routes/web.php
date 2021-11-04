@@ -34,6 +34,15 @@ Route::middleware(['auth'])->group(function () {
 
     // Rotas Pedido
     Route::get('/checkout/pedido/finalizado', [App\Http\Controllers\PedidoController::class, 'fazerPedido'])->name('endCheckoutPedido');
+    Route::get('/pedidos', [App\Http\Controllers\PedidoController::class, 'pedidosView'])->name('pedidosView');
+
+    // Rotas ADMIN
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/admin/vendas', [App\Http\Controllers\AdminController::class, 'vendasView'])->name('vendasView');
+        Route::post('/admin/vendas/periodo', [App\Http\Controllers\AdminController::class, 'vendasPeriodo'])->name('selecionarVendasPeriodo');
+        Route::get('/admin/produtos', [App\Http\Controllers\AdminController::class, 'produtosView'])->name('produtosView');
+        Route::get('/admin/clientes', [App\Http\Controllers\AdminController::class, 'clientesView'])->name('clientesView');
+    });
 });
 
 // Rota Usuário

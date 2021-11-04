@@ -67,19 +67,19 @@
                 <div class="card-body">
                     <form id="MetodoDePagamento" action="{{ route('endCheckoutPedido') }}" method="get">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="metodoPagamento" value="dinheiro" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" name="metodoPagamento" value="1" id="flexRadioDefault1">
                             <label class="form-check-label" for="flexRadioDefault1">
                                 Dinheiro
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="metodoPagamento" value="crédito" id="flexRadioDefault2">
+                            <input class="form-check-input" type="radio" name="metodoPagamento" value="2" id="flexRadioDefault2">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Cartão de crédito
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="metodoPagamento" value="débito" id="flexRadioDefault3">
+                            <input class="form-check-input" type="radio" name="metodoPagamento" value="3" id="flexRadioDefault3">
                             <label class="form-check-label" for="flexRadioDefault3">
                                 Cartão de débito
                             </label>
@@ -95,26 +95,26 @@
                 <div class="card-header">{{ __('Carrinho') }}</div>
 
                 <div class="card-body">
-                        <table class="table">
-                            <thead id="thead-carrinho">
-                                <tr class="text-center">
-                                    <th scope="col">Produto</th>
-                                    <th scope="col">Valor</th>
-                                    <th scope="col" class="text-center">Quantidade</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbody-carrinho">
-                                    @foreach($carrinho->getContent() as $item)
-                                        <tr class="text-center">
-                                            <td>{{$item->name}}</td>
-                                            <td>R${{$item->price}}</td>
-                                            <td>{{$item->quantity}}</td>
-                                            <td>R${{ number_format($item->price*$item->quantity, 2) }}</td>
-                                        </tr>
-                                    @endforeach
-                            </tbody>
-                        </table>
+                    <table class="table">
+                        <thead id="thead-carrinho">
+                            <tr class="text-center">
+                                <th scope="col">Produto</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col" class="text-center">Quantidade</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-carrinho">
+                                @foreach($carrinho->getContent() as $item)
+                                    <tr class="text-center">
+                                        <td>{{$item->name}}</td>
+                                        <td>R${{$item->price}}</td>
+                                        <td>{{$item->quantity}}</td>
+                                        <td>R${{ number_format($item->price*$item->quantity, 2) }}</td>
+                                    </tr>
+                                @endforeach
+                        </tbody>
+                    </table>
                 </div>
                 <div class="card-footer" id="card-footer-carrinho">
                     <div class="d-flex justify-content-end">Sub total: &nbsp; R${{$carrinho->getTotal()}}</div>
@@ -124,7 +124,7 @@
             </div>
         </div>
         
-        <div class="col-md-12 mt-4 d-flex justify-content-end align-self-end">
+        <div class="col-md-12 mt-3 d-flex justify-content-end align-self-end">
             <button type="submit" form="MetodoDePagamento" class="btn btn-success">Finalizar pedido</button>
         </div>
     </div>

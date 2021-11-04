@@ -26,15 +26,15 @@ class DatabaseSeeder extends Seeder
             ['nome' => "Salgados"],['nome' => "Doces"], ['nome' => "Bebidas"]
         ]);
         
-        DB::table('pedido_pagamentos')->insert(
+        DB::table('pedido_pagamentos')->insert([
             ['nome' => "Dinheiro"], ['nome' => "Cartão de Crédito"], ['nome' => "Cartão de Débito"] 
-        );
+        ]);
 
         $this->call([
             Produtos::class
         ]);
 
-        DB::table('users')->insert(
+        DB::table('users')->insert([
             [
                 'name' => 'Gabriel Oliveira',
                 'cpf' => "50779690869",
@@ -53,9 +53,9 @@ class DatabaseSeeder extends Seeder
                 'password' => Hash::make('admin123admin'), // password
                 'remember_token' => Str::random(10),
             ]
-        );
+        ]);
 
-        DB::table('enderecos')->insert(
+        DB::table('enderecos')->insert([
             [
                 'user_id' => 1,
                 'cidade' => "Mogi Mirim",
@@ -63,6 +63,6 @@ class DatabaseSeeder extends Seeder
                 'numero' => 17,
                 'bairro' => 'Centro',
             ]
-        );
+        ]);
     }
 }
