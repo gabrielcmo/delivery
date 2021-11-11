@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="shortcut icon" href="{{ asset("/imgs/favicon.ico") }}" />
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -66,13 +68,16 @@
                                     Olá, {{ Auth::user()->name }}
                                 </a>
                                 
-                                @if(Auth::user()->role_id == 1)
+                                @if(Auth::user()->role_id == 2)
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('editarPerfilView') }}">
-                                            {{ __('Meu perfil') }}
+                                        <a class="dropdown-item" href="{{ route('vendasView') }}">
+                                            {{ __('Vendas') }}
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('pedidosView') }}">
-                                            {{ __('Meus pedidos') }}
+                                        <a class="dropdown-item" href="{{ route('produtosView') }}">
+                                            {{ __('Produtos') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('clientesView') }}">
+                                            {{ __('Clientes') }}
                                         </a>
                                         <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -84,16 +89,13 @@
                                             @csrf
                                         </form>
                                     </div>
-                                @elseif(Auth::user()->role_id == 2)
+                                @else
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('vendasView') }}">
-                                            {{ __('Vendas') }}
+                                        <a class="dropdown-item" href="{{ route('editarPerfilView') }}">
+                                            {{ __('Meu perfil') }}
                                         </a>
-                                        <a class="dropdown-item" href="{{ route('produtosView') }}">
-                                            {{ __('Produtos') }}
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('clientesView') }}">
-                                            {{ __('Clientes') }}
+                                        <a class="dropdown-item" href="{{ route('pedidosView') }}">
+                                            {{ __('Meus pedidos') }}
                                         </a>
                                         <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();

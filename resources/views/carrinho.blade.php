@@ -33,6 +33,7 @@
                                 <th scope="col">Valor</th>
                                 <th scope="col" class="text-center">Quantidade</th>
                                 <th scope="col">Total</th>
+                                <th scope="col"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -47,6 +48,7 @@
                                             <td class="col-2"><div id="total{{$item->associatedModel->id}}">R${{$item->price*$item->quantity}}</div></td>
                                             <div id="estoque{{$item->associatedModel->id}}" hidden>{{ $item->associatedModel->qtd_estoque }}</div>
                                             <div id="price{{$item->associatedModel->id}}" hidden>{{$item->price}}</div>
+                                            <td><a class="text-danger" href="{{ route('removerItem', $item->id) }}"><i class="fas fa-trash"></i></a></td>
                                         </tr>
                                     @endforeach
                             </tbody>

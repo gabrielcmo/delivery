@@ -14,18 +14,32 @@ class UserController extends Controller
     public function update(Request $request){
         $user = Auth::user();
 
-        $data = $this->validate($request, [
-            'name' => ['required', 'string', 'max:255'],
-            'cpf' => ['required', 'cpf', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'cidade' => ['string'],
-            'rua' => ['string'],
-            'bairro' => ['string'],
-            'numero' => ['integer']
-        ]);
+        if($user->role->id == 1){
+            $data = $this->validate($request, [
+                'name' => ['required', 'string', 'max:255'],
+                'cpf' => ['required', 'cpf', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255'],
+                'cidade' => ['string'],
+                'rua' => ['string'],
+                'bairro' => ['string'],
+                'numero' => ['integer']
+            ]);
+        }else{
+            $data = $this->validate($request, [
+                'name' => ['required', 'string', 'max:255'],
+                'cpf' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255'],
+                'cidade' => ['string', 'nullable'],
+                'rua' => ['string', 'nullable'],
+                'bairro' => ['string', 'nullable'],
+                'numero' => ['integer', 'nullable']
+            ]);
+        }
 
-        if(Auth::user()->role->id !== 2){
+        if(Auth::user()->role->id == 1){
             $data['role_id'] = 1;
+        }else{
+            $data['role_id'] = 2;
         }
 
         $user->name = $data['name'];
@@ -33,7 +47,7 @@ class UserController extends Controller
         $user->role_id = $data['role_id'];
         $user->email = $data['email'];
 
-        if($user->endereco == null){
+        if($user->endereco == null && $data['rua'] !== null){
             Endereco::create([
                 'user_id' => $user->id,
                 'cidade' => $data['cidade'],
@@ -41,7 +55,7 @@ class UserController extends Controller
                 'bairro' => $data['bairro'],
                 'numero' => $data['numero']
             ]);
-        }else{
+        }elseif($data['rua'] !== null){
             $endereco = Endereco::all()->where('user_id', $user->id)->first();
             $endereco->cidade = $data['cidade'];
             $endereco->rua = $data['rua'];
@@ -53,6 +67,6 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect('/')->with('success', 'Informações atualizadas com sucesso!');
+        return redirect()->back()->with('success', 'Informações atualizadas com sucesso!');
     }
 }

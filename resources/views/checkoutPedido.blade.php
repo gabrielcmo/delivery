@@ -38,6 +38,7 @@
                     @if ($user->endereco == null)
                         <a type="button" href="{{ route('editarPerfilView') }}" class="btn btn-success mr-2">Adicionar endereço de entrega</a>
                     @else
+                        <a type="button" href="{{ route('editarPerfilView') }}" class="btn btn-success col-md-4 mb-3">Atualizar endereço de entrega</a>
                         <table class="table">
                             <thead>
                                 <tr class="text-center">
@@ -66,23 +67,15 @@
 
                 <div class="card-body">
                     <form id="MetodoDePagamento" action="{{ route('endCheckoutPedido') }}" method="get">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="metodoPagamento" value="1" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Dinheiro
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="metodoPagamento" value="2" id="flexRadioDefault2">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Cartão de crédito
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="metodoPagamento" value="3" id="flexRadioDefault3">
-                            <label class="form-check-label" for="flexRadioDefault3">
-                                Cartão de débito
-                            </label>
+                        <div class="form-group row mr-auto">
+                            <label class="col-md-6 col-form-label text-md-right" for="metodoPagamento">Selecione um Método de Pagamento</label>
+                            <div class="col-md-6">
+                                <select name="metodoPagamento" required class="custom-select" id="metodoPagamento">
+                                    <option value="1">Dinheiro</option>
+                                    <option value="2">Cartão de Crédito</option>
+                                    <option value="3">Cartão de Débito</option>
+                                </select>
+                            </div>
                         </div>
                     </form>
                 </div>

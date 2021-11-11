@@ -9,6 +9,15 @@ use App\Models\Produto;
 
 class CarrinhoController extends Controller
 {
+    public function removerItem(Request $request, $item_id){
+        $user = Auth::user();
+        $carrinho = \Cart::session($user->id);
+
+        $carrinho->remove($item_id);
+        
+        return redirect()->back()->with('success', 'Produto removido do carrinho.');
+    }
+
     public function view(){
         return view('carrinho');
     }

@@ -12,6 +12,8 @@
                     <form method="POST" action="{{ route('editarPerfil') }}">
                         @csrf
 
+                        <input type="hidden" name="role_id" value="{{$user->role->id}}">
+
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
 
@@ -111,7 +113,7 @@
                                 <input id="numero" type="text" class="form-control @error('numero') is-invalid @enderror" name="numero" autocomplete="Número" 
                                     value="{{ $numero }}">
 
-                                @error('rua')
+                                @error('numero')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

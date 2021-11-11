@@ -108,8 +108,23 @@
                     icon: 'success',
                     type: "success",
                     buttons: false,
-                    timer: 1500
+                    timer: 1000
                 });
+            },
+            error: function(error){
+                if(error.responseJSON.message == "Unauthenticated."){
+                    swal({
+                        text: "Você precisa fazer login para adicionar produtos ao carrinho.",
+                        icon: 'error',
+                        type: "error",
+                        buttons: false,
+                        timer: 1500
+                    });
+
+                    setTimeout(() => {
+                        window.location.href = "/login";
+                    }, 1500);
+                }
             }
         });
     });

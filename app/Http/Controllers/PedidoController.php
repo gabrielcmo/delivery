@@ -16,6 +16,10 @@ class PedidoController extends Controller
 
         $taxaEntrega = 4;
 
+        if($request->metodoPagamento == null){
+            return redirect()->back()->with('error', 'Por favor, selecione um método de pagamento.');
+        }
+
         $pedido = new Pedido();
         $pedido->user_id = $user->id;
         $pedido->metodo_pagamento_id = $request->metodoPagamento;

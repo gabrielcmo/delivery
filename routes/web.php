@@ -23,6 +23,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('addCarrinho');
     Route::get('/carrinho/limpar', [App\Http\Controllers\CarrinhoController::class, 'limpar'])
         ->name('limparCarrinho');
+    Route::get('/carrinho/remover/{id}', [App\Http\Controllers\CarrinhoController::class, 'removerItem'])
+        ->name('removerItem');
     Route::post('/checkout/pedido', [App\Http\Controllers\CarrinhoController::class, 'atualizar'])->name('checkoutPedido');
 
     // Rotas Usuário
