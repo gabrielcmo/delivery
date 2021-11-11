@@ -109,23 +109,25 @@
 
     function barChart(){
         var data = new google.visualization.arrayToDataTable($.parseJSON(vendasPorMetodoPagamento));
-          var options = {
-            'legend':'right',
+        
+        var options = {
+            'legend':'bottom',
             'title':'Vendas Por Cada Método de Pagamento',
-            'is3D':false,
             'width':600,
             'height':400,
-          };
+        };
+
         var chart = new google.visualization.BarChart(document.getElementById('bar-chart'));
         chart.draw(data, options);
     }
 
     function pieChart() {
         var data = new google.visualization.arrayToDataTable($.parseJSON(vendas));
+
           var options = {
             'legend':'right',
             'title':'Vendas Por Categoria Dos Produtos',
-            'is3D':false,
+            'is3D':true,
             'width':600,
             'height':400,
           };
