@@ -7,7 +7,7 @@
 @endphp
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-12 col-sm-12">
             <div class="card">
                 <div class="card-header">{{ __('Meus Pedidos') }}</div>
 
@@ -33,14 +33,14 @@
                                     </div>
                                 
                                     <div id="collapse{{$pedido->id}}" class="collapse" aria-labelledby="heading{{$pedido->id}}" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <table class="table">
+                                        <div class="card-body" style="overflow-x:auto;">
+                                            <table class="table" style="">
                                                 <thead>
                                                 <tr class="text-center">
                                                     <th scope="col"></th>
                                                     <th scope="col">Produto</th>
                                                     <th scope="col">Valor</th>
-                                                    <th scope="col" class="text-center">Quantidade</th>
+                                                    <th scope="col" class="text-center">Qtd</th>
                                                     <th scope="col">Total</th>
                                                 </tr>
                                                 </thead>

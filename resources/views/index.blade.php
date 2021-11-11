@@ -34,7 +34,7 @@
         <h1>Cardápio</h1>
     </div>
     <div class="row justify-content-center">
-        <div class="col-10">
+        <div class="col-md-10 col-sm-12">
             <div class="card mb-4">
                 <div class="card-header">
                     <ul class="nav nav-tabs dark card-header-tabs">

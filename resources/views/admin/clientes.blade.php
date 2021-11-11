@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Clientes') }}</div>
 
-                <div class="card-body">
+                <div class="card-body" style="overflow-x: auto;">
                     <table class="table">
                         <thead id="thead-carrinho">
                             <tr class="text-center">

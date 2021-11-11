@@ -4,32 +4,36 @@
 <div class="container">
     <div class="row justify-content-center">
         
-        <div class="col-md-12 mt-2 mb-4">
+        <div class="col-md-12 col-sm-12">
             <div class="card">
-                <form method="post" action="{{ route("selecionarVendasPeriodo") }}">
+                <form class="form mt-3 mb-3 ml-4 mr-2" method="post" action="{{ route("selecionarVendasPeriodo") }}">
                     @csrf
 
-                    <div class="form-group mr-auto mt-4 row">
-                        <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('De') }}</label>
-                        <div class="col-md-3">
-                            <input type="date" required max="{{ date('Y-m-d') }}" id="from" name="from" value="@if(isset($from)){{$from}}@else{{date('Y-m-d')}}@endif">
-                        </div>
-                        
-                        <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('até') }}</label>
-                        <div class="col-md-3">
-                            <input type="date" required min="@if(isset($from)){{$from}}@else{{date('Y-m-d')}}@endif" max="{{ date('Y-m-d') }}" id="to" name="to" value="@if(isset($to)){{$to}}@else{{date('Y-m-d')}}@endif">
+                    <div class="form-row">
+                        <div class="col-4 col-sm-5 col-md-4">
+                            <div class="form-group">
+                                <label for="from" class="mr-2">{{ __('De') }}</label>
+                                <input type="date" class="form-control" required max="{{ date('Y-m-d') }}" id="from" name="from" value="@if(isset($from)){{$from}}@else{{date('Y-m-d')}}@endif">
+                            </div>
                         </div>
 
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-success" onClick="vendasPeriodo()">Selecionar</button>
+                        <div class="col-4 col-sm-5 col-md-4">
+                            <div class="form-group">
+                                <label for="to" class="mr-2">{{ __('até') }}</label>
+                                <input type="date" class="form-control" required min="@if(isset($from)){{$from}}@else{{date('Y-m-d')}}@endif" max="{{ date('Y-m-d') }}" id="to" name="to" value="@if(isset($to)){{$to}}@else{{date('Y-m-d')}}@endif">
+                            </div>
                         </div>
-                    </div>
+                        
+                        <div class="col" style="margin-top: 30px;">
+                            <button class="btn btn-success" type="submit">Selecionar</button>
+                        </div>
+                    </div> 
                 </form>
             </div>
         </div>
         <div class="col-md-4">
             <div class="row">
-                <div class="col-md-12 mb-3">
+                <div class="col-md-12 mt-3 mb-3">
                     <div class="card">
                         <div class="card-header">Top 5 Produtos Mais Vendidos</div>
                         <div class="card-body">
@@ -43,13 +47,13 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($top_5_vendidos as $key => $item)
-                                    @php $produto = \App\Models\Produto::find($item->produto_id); @endphp
-                                            <tr class="text-center">
-                                                <td>{{++$key}}°</td>
-                                                <td>{{$produto->nome}}</td>
-                                                <td>{{$item->total}}</td>
-                                            </tr>
-                                        @endforeach
+                                        @php $produto = \App\Models\Produto::find($item->produto_id); @endphp
+                                        <tr class="text-center">
+                                            <td>{{++$key}}°</td>
+                                            <td>{{$produto->nome}}</td>
+                                            <td>{{$item->total}}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -75,15 +79,15 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="col-md-12">
+            <div class="col-md-12 mt-3">
                 <div class="card">
-                    <div class="d-flex justify-content-center" id="pie-chart"></div>
+                    <div class="d-flex justify-content-center mt-3 m-2" id="pie-chart"></div>
                 </div>
             </div>
             
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12  mt-3">
                 <div class="card">
-                    <div id="bar-chart"></div>
+                    <div class="d-flex justify-content-center mt-3 m-2" id="bar-chart"></div>
                 </div>
             </div>
         </div>
@@ -100,7 +104,6 @@
     var vendas = '<?php echo $vendas ?>';
     var vendasPorMetodoPagamento = '<?php echo $vendasPorMetodoPagamento ?>';
 
-    console.log(vendas);
     google.charts.load('current', {
         'packages': ['corechart']
     });
@@ -113,8 +116,8 @@
         var options = {
             'legend':'bottom',
             'title':'Vendas Por Cada Método de Pagamento',
-            'width':600,
-            'height':400,
+            'width':"auto",
+            'height':"auto",
         };
 
         var chart = new google.visualization.BarChart(document.getElementById('bar-chart'));
@@ -128,8 +131,8 @@
             'legend':'right',
             'title':'Vendas Por Categoria Dos Produtos',
             'is3D':true,
-            'width':600,
-            'height':400,
+            'width':"auto",
+            'height':"auto",
           };
         var chart = new google.visualization.PieChart(document.getElementById('pie-chart'));
         chart.draw(data, options);
