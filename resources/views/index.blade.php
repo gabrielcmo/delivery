@@ -69,9 +69,8 @@
                                             </div>
                                             <div class="card-footer row">
                                                 <div class="col-6 mt-3">
-                                                    <h5 class="">R$ @if(strpos(strval($produto->valor), '.') == false) {{$produto->valor}},00 @elseif(strpos(strval($produto->valor), '.')) @php
-                                                        $valor = str_replace('.',',', $produto->valor)
-                                                    @endphp {{$valor}} @endif</h5>
+                                                    <h5>R$ {{number_format($produto->valor, 2, ',', ' ');}}
+                                                    </h5>
                                                 </div>
                                                 <div class="col-6 mt-1">   
                                                     <a data-produto-id="{{ $produto->id }}" class="btn btn-success button border cart-button">Adicionar ao carrinho <i class="fas fa-shopping-cart"></i></a>
