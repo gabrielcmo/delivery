@@ -20,13 +20,22 @@
                                 <div class="card">
                                     <div class="card-header" id="heading{{$pedido->id}}">
                                         <h5 class="mb-0 row">
-                                            <button class="col-12 btn btn-link text-decoration-none" data-toggle="collapse" data-target="#collapse{{$pedido->id}}" aria-expanded="true" aria-controls="collapse{{$pedido->id}}">
-                                                <div class="float-left">
+                                            <button class="col-12 btn btn-link text-decoration-none" style="color: black;" data-toggle="collapse" data-target="#collapse{{$pedido->id}}" aria-expanded="true" aria-controls="collapse{{$pedido->id}}">
+                                                <div class="float-left mb-2">
                                                     Pedido {{$pedido->id}}
                                                 </div>
-                                                
-                                                <div class="float-right">
-                                                    <strong>Valor total: R${{$pedido->valor}}</strong>
+    
+                                                <div class="float-right d-flex">
+                                                    @if (isset($tempo_estimado_entrega))
+                                                        <div class="mr-3">Tempo de entrega: aproximadamente {{$tempo_estimado_entrega}} minutos</div>
+                                                    @endif
+                                                    <div class="mr-3 d-flex">
+                                                        Status:&nbsp;<div class="@if($pedido->status->id == 1) text-info
+                                                            @elseif($pedido->status->id == 2 || $pedido->status->id == 3 || $pedido->status->id == 4) text-success
+                                                            @else text-danger @endif">{{$pedido->status->nome}}</div>
+                                                    </div>
+                                                    <div class="mr-3">Método de Pagamento: {{$pedido->metodo_pagamento->nome}}</div>
+                                                    <div>Valor total: R${{$pedido->valor}}</div>
                                                 </div>
                                             </button>
                                         </h5>

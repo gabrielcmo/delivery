@@ -12,6 +12,50 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    /*
+        Status dos pedidos:
+            1- Aguardando aprovação
+            2- Em preparo
+            3- Saiu para entrega
+            4- Entegue
+            5- Cancelado
+            Obs: o cliente pode cancelar o pedido apenas que ainda não foi aceito, em um prazo de até 1 minuto.
+    */
+
+    // Idéia: dar ao cliente um tempo estimado de entrega em função da quantidade de pedidos aguardando aprovação.
+    public function aceitarPedido(Request $request){
+        $pedido_id = $request->pedido_id;
+
+        $pedido = Pedido::find($pedido_id);
+
+        $pedido->status_id = 2;
+        $pedido->save();
+
+        return back()->with('success', "Pedido $pedido_id aceito com sucesso!");
+    }
+
+    public function statusSaiuParaEntrega(Request $request){
+        $pedido_id = $request->pedido_id;
+
+        $pedido = Pedido::find($pedido_id);
+
+        $pedido->status_id = 3;
+        $pedido->save();
+
+        return back()->with('success', "Pedido $pedido_id atualizado com sucesso!");
+    }
+
+    public function statusEntregue(Request $request){
+        $pedido_id = $request->pedido_id;
+
+        $pedido = Pedido::find($pedido_id);
+
+        $pedido->status_id = 4;
+        $pedido->save();
+
+        return back()->with('success', "Pedido $pedido_id atualizado com sucesso!");
+    }
+
     public function vendasPeriodo(Request $request){
         // Período a ser avaliado
         $from = $request->from." 23:59:59";

@@ -35,7 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/user/edit', [App\Http\Controllers\UserController::class, 'update'])->name('editarPerfil');
 
     // Rotas Pedido
-    Route::get('/checkout/pedido/finalizado', [App\Http\Controllers\PedidoController::class, 'fazerPedido'])->name('endCheckoutPedido');
+    Route::post('/checkout/pedido/finalizado', [App\Http\Controllers\PedidoController::class, 'fazerPedido'])->name('endCheckoutPedido');
     Route::get('/pedidos', [App\Http\Controllers\PedidoController::class, 'pedidosView'])->name('pedidosView');
 
     // Rotas ADMIN

@@ -21,6 +21,9 @@ class CreatePedidosTable extends Migration
             $table->foreignId('metodo_pagamento_id')->constrained('pedido_pagamentos')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->foreignId('status_id')->constrained('pedido_statuses')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->float('valor', 8, 2);
             $table->timestamps();
         });

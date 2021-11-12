@@ -18,14 +18,18 @@ class Pedido extends Model
     public $timestamps = true;
 
     public function metodo_pagamento(){
-        return $this->hasOne('App\Models\PedidoPagamento');
+        return $this->belongsTo('App\Models\PedidoPagamento');
     }
 
     public function produtos(){
         return $this->hasMany('App\Models\PedidoProduto');
     }
 
+    public function status(){
+        return $this->belongsTo('App\Models\PedidoStatus');
+    }
+
     public function user(){
-        return $this->hasOne('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 }

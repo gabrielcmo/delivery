@@ -10,6 +10,16 @@ use App\Models\PedidoProduto;
 
 class PedidoController extends Controller
 {
+    /*
+        Status dos pedidos:
+            1- Aguardando aprovação
+            2- Em preparo
+            3- Saiu para entrega
+            4- Entegue
+            5- Cancelado
+
+            Obs: o cliente pode cancelar o pedido apenas que ainda não foi aceito, em um prazo de até 1 minuto.
+    */
     public function fazerPedido(Request $request){
         $user = Auth::user();
         $carrinho = \Cart::session($user->id);
@@ -23,6 +33,7 @@ class PedidoController extends Controller
         $pedido = new Pedido();
         $pedido->user_id = $user->id;
         $pedido->metodo_pagamento_id = $request->metodoPagamento;
+        $pedido->status_id = 1;
         $pedido->valor = $carrinho->getTotal() + $taxaEntrega;
         $pedido->save();
         
@@ -47,9 +58,21 @@ class PedidoController extends Controller
             $produto_pedido->save();
         }
 
+        // Tempo aproximado de entrega, em minutos
+        $pedidos_aguardando_preparo = Pedido::where('status_id', 1)->get()->count();
+        if($pedidos_aguardando_preparo >= 6){
+            $tempo_estimado_entrega = 50;
+        }elseif($pedidos_aguardando_preparo < 6 && $pedidos_aguardando_preparo >= 3){
+            $tempo_estimado_entrega = 40;
+        }else{
+            $tempo_estimado_entrega = 30;
+        }
+
         $carrinho->clear();
 
-        return redirect('/')->with('success', 'Seu pedido foi realizado com sucesso');
+        return redirect('/pedidos')
+            ->with('tempo_estimado_entrega', $tempo_estimado_entrega)
+            ->with('success', 'Seu pedido foi realizado com sucesso');
     }
 
     public function pedidosView(){

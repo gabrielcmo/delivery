@@ -29,6 +29,11 @@ class DatabaseSeeder extends Seeder
         DB::table('pedido_pagamentos')->insert([
             ['nome' => "Dinheiro"], ['nome' => "Cartão de Crédito"], ['nome' => "Cartão de Débito"] 
         ]);
+        
+        DB::table('pedido_statuses')->insert([
+            ['nome' => "Aguardando aprovação"], ['nome' => "Em preparo"], 
+            ['nome' => "Saiu para entrega"], ['nome' => "Entregue"], ['nome' => "Cancelado"]
+        ]);
 
         $this->call([
             Produtos::class

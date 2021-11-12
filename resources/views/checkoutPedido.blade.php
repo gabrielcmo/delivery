@@ -66,7 +66,8 @@
                 <div class="card-header">{{ __('Método de Pagamento') }}</div>
 
                 <div class="card-body">
-                    <form id="MetodoDePagamento" action="{{ route('endCheckoutPedido') }}" method="get">
+                    <form id="MetodoDePagamento" action="{{ route('endCheckoutPedido') }}" method="post">
+                        @csrf
                         <div class="form-group row mr-auto">
                             <label class="col-md-6 col-form-label text-md-right" for="metodoPagamento">Selecione um Método de Pagamento</label>
                             <div class="col-md-6">
