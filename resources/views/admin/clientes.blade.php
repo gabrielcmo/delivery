@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">{{ __('Clientes') }}</div>
+                <div class="card-header">{{ __('Pedidos em Espera') }}</div>
 
                 <div class="card-body" style="overflow-x: auto;">
                     <table class="table">

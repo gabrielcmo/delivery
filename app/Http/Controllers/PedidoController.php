@@ -26,6 +26,11 @@ class PedidoController extends Controller
 
         $taxaEntrega = 4;
 
+        if($carrinho->getTotalQuantity() == 0){
+            return redirect()->back()->with('error', 'Parece que você não tem nenhum item no carrinho, verifique se você
+            já fez seu pedido. Caso não tenha feito, faça novamente, por gentileza.');
+        }
+
         if($request->metodoPagamento == null){
             return redirect()->back()->with('error', 'Por favor, selecione um método de pagamento.');
         }
@@ -57,6 +62,8 @@ class PedidoController extends Controller
 
             $produto_pedido->save();
         }
+        
+        $carrinho->clear();
 
         // Tempo aproximado de entrega, em minutos
         $pedidos_aguardando_preparo = Pedido::where('status_id', 1)->get()->count();
@@ -67,8 +74,6 @@ class PedidoController extends Controller
         }else{
             $tempo_estimado_entrega = 30;
         }
-
-        $carrinho->clear();
 
         return redirect('/pedidos')
             ->with('tempo_estimado_entrega', $tempo_estimado_entrega)

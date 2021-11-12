@@ -40,6 +40,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Rotas ADMIN
     Route::middleware(['admin'])->group(function () {
+        Route::get('/admin/pedidos', [App\Http\Controllers\AdminController::class, 'pedidosView'])->name('pedidosAdminView');
+        // Rotas de controle dos pedidos
+        Route::get('admin/pedido/{id}/aceitar', [App\Http\Controllers\AdminController::class, 'aceitarPedido'])->name('aceitarPedido');
+        Route::get('admin/pedido/{id}/entregar', [App\Http\Controllers\AdminController::class, 'statusSaiuParaEntrega'])->name('aEntregar');
+        Route::get('admin/pedido/{id}/entregue', [App\Http\Controllers\AdminController::class, 'statusEntregue'])->name('pedidoEntregue');
+
         Route::get('/admin/vendas', [App\Http\Controllers\AdminController::class, 'vendasView'])->name('vendasView');
         Route::post('/admin/vendas/periodo', [App\Http\Controllers\AdminController::class, 'vendasPeriodo'])->name('selecionarVendasPeriodo');
         Route::get('/admin/produtos', [App\Http\Controllers\AdminController::class, 'produtosView'])->name('produtosView');

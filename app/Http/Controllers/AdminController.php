@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+
+    public function pedidosView(){
+        return view('admin.pedidos');
+    }
+
     /*
         Status dos pedidos:
             1- Aguardando aprovação
@@ -23,9 +28,7 @@ class AdminController extends Controller
     */
 
     // Idéia: dar ao cliente um tempo estimado de entrega em função da quantidade de pedidos aguardando aprovação.
-    public function aceitarPedido(Request $request){
-        $pedido_id = $request->pedido_id;
-
+    public function aceitarPedido($pedido_id){
         $pedido = Pedido::find($pedido_id);
 
         $pedido->status_id = 2;
@@ -34,9 +37,7 @@ class AdminController extends Controller
         return back()->with('success', "Pedido $pedido_id aceito com sucesso!");
     }
 
-    public function statusSaiuParaEntrega(Request $request){
-        $pedido_id = $request->pedido_id;
-
+    public function statusSaiuParaEntrega($pedido_id){
         $pedido = Pedido::find($pedido_id);
 
         $pedido->status_id = 3;
@@ -45,9 +46,7 @@ class AdminController extends Controller
         return back()->with('success', "Pedido $pedido_id atualizado com sucesso!");
     }
 
-    public function statusEntregue(Request $request){
-        $pedido_id = $request->pedido_id;
-
+    public function statusEntregue($pedido_id){
         $pedido = Pedido::find($pedido_id);
 
         $pedido->status_id = 4;

@@ -17,7 +17,7 @@
                     @else
                         <div id="accordion">
                             @foreach ($user->pedidos->sortByDesc('id') as $pedido)
-                                <div class="card">
+                                <div class="card mb-3">
                                     <div class="card-header" id="heading{{$pedido->id}}">
                                         <h5 class="mb-0 row">
                                             <button class="col-12 btn btn-link text-decoration-none" style="color: black;" data-toggle="collapse" data-target="#collapse{{$pedido->id}}" aria-expanded="true" aria-controls="collapse{{$pedido->id}}">

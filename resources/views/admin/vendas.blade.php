@@ -62,7 +62,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <strong>Total vendido: </strong>R${{ $total_vendido }} <br>
+                            <strong>Total de produtos vendidos: </strong>{{ $total_vendido }}<br>
                             <strong>Total pedidos feitos: </strong>{{ $qtd_pedidos_feitos }}
                         </div>
                     </div>

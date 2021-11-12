@@ -70,6 +70,13 @@
                                 
                                 @if(Auth::user()->role_id == 2)
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('editarPerfilView') }}">
+                                            {{ __('Meu perfil') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('pedidosAdminView') }}">
+                                            {{ __('Pedidos') }}
+                                        </a>
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('vendasView') }}">
                                             {{ __('Vendas') }}
                                         </a>
