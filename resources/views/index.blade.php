@@ -53,7 +53,7 @@
                             <div class="row d-flex justify-content-center">
                                 @foreach (App\Models\Produto::all()->where('categoria_id', $item_categoria->id) as $produto)
                                     <div class="col-auto mt-2 mb-4">
-                                        <div data-produto-id="{{$produto->id}}" class="card card-produto" style="width: 300px;height: 400px;">
+                                        <div data-produto-id="{{$produto->id}}" class="card card-produto" style="width: 300px;height: 450px;">
                                             <div class="card-body">
                                                 <div class="d-flex justify-content-center mb-4">
                                                     <img class="card-img-top rounded border" style="height: 150px; width:auto;" src="{{ asset("/imgs/$produto->img") }}" alt="Card image cap">
@@ -68,8 +68,10 @@
                                                 </p>
                                             </div>
                                             <div class="card-footer row">
-                                                <div class="col-6">
-                                                    R${{ $produto->valor }}.00
+                                                <div class="col-6 mt-3">
+                                                    <h5 class="">R$ @if(strpos(strval($produto->valor), '.') == false) {{$produto->valor}},00 @elseif(strpos(strval($produto->valor), '.')) @php
+                                                        $valor = str_replace('.',',', $produto->valor)
+                                                    @endphp {{$valor}} @endif</h5>
                                                 </div>
                                                 <div class="col-6 mt-1">   
                                                     <a data-produto-id="{{ $produto->id }}" class="btn btn-success button border cart-button">Adicionar ao carrinho <i class="fas fa-shopping-cart"></i></a>
@@ -88,7 +90,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        $(".alert-ajax").hide(); 
+        $(".alert-ajax").hide();
     });
 
     $('.cart-button').click(function(){
