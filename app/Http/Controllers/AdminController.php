@@ -26,8 +26,7 @@ class AdminController extends Controller
             5- Cancelado
             Obs: o cliente pode cancelar o pedido apenas que ainda não foi aceito, em um prazo de até 1 minuto.
     */
-
-    // Idéia: dar ao cliente um tempo estimado de entrega em função da quantidade de pedidos aguardando aprovação.
+    
     public function aceitarPedido($pedido_id){
         $pedido = Pedido::find($pedido_id);
 
