@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">{{ __('Pedidos em Espera') }}</div>
+                <div class="card-header">{{ __('Clientes cadastrados') }}</div>
 
                 <div class="card-body" style="overflow-x: auto;">
                     <table class="table">
@@ -33,7 +33,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href=""><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('editarPerfilClienteView', $cliente->id) }}"><i class="fas fa-edit"></i></a>
                                         <a class="text-danger" href=""><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>

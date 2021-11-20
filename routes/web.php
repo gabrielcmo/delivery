@@ -49,7 +49,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/vendas', [App\Http\Controllers\AdminController::class, 'vendasView'])->name('vendasView');
         Route::post('/admin/vendas/periodo', [App\Http\Controllers\AdminController::class, 'vendasPeriodo'])->name('selecionarVendasPeriodo');
         Route::get('/admin/produtos', [App\Http\Controllers\AdminController::class, 'produtosView'])->name('produtosView');
+        Route::get('/admin/produto/editar/{id}', function ($id) {
+            return view('admin.editarProduto')->with('id', $id);
+        })->name('editarProdutoView');
+        Route::post('/produto/edit', [App\Http\Controllers\ProdutoController::class, 'update'])->name('editarProduto');    
+    
         Route::get('/admin/clientes', [App\Http\Controllers\AdminController::class, 'clientesView'])->name('clientesView');
+        Route::get('/admin/cliente/editar/{id}', function ($id) {
+            return view('admin.editarPerfilCliente')->with('id', $id);
+        })->name('editarPerfilClienteView');
+        Route::post('/cliente/edit', [App\Http\Controllers\UserController::class, 'adminUpdate'])->name('editarPerfilCliente');    
     });
 });
 

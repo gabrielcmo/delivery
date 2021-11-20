@@ -16,6 +16,7 @@
                                 <th scope="col">Descrição</th>
                                 <th scope="col">Qtd. Estoque</th>
                                 <th scope="col">Valor</th>
+                                <th scope="col">Categoria</th>
                                 <th scope="col">Ações</th>
                             </tr>
                         </thead>
@@ -27,8 +28,9 @@
                                     <td>{{$produto->descricao}}</td>
                                     <td>{{$produto->qtd_estoque}}</td>
                                     <td>R${{$produto->valor}}</td>
+                                    <td>{{$produto->categoria->nome}}</td>
                                     <td>
-                                        <a href=""><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('editarProdutoView', $produto->id) }}"><i class="fas fa-edit"></i></a>
                                         <a class="text-danger" href=""><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
