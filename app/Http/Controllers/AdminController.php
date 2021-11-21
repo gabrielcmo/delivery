@@ -54,8 +54,11 @@ class AdminController extends Controller
         return back()->with('success', "Pedido $pedido_id atualizado com sucesso!");
     }
 
+    // Mesma coisa da função abaixo dessa (vendasView), mas com um período selecionado
+    // Note que agora em todas as requisições usamos o código ->whereBetween(data1, data2) que serve
+    // para recolhermos os dados que estão entre esses dois períodos
     public function vendasPeriodo(Request $request){
-        // Período a ser avaliado
+        // Período a ser avaliado, adicionando/concatenando o horário para poder fazer a requisição
         $from = $request->from." 23:59:59";
         $to = $request->to." 23:59:59";
 
@@ -154,6 +157,16 @@ class AdminController extends Controller
             ->with('total_vendido', $total_vendido);
     }
 
+    /*
+    Essa função recolhe os seguintes dados do Banco de Dados:
+        -vendas
+        -qtd_pedidos_feitos
+        -cliente_fiel
+        -top_5_vendidos
+        -vendasPorMetodoPagamento
+        -total_vendido
+    E depois retorna esses dados para a view para que possam ser mostrados ao administrador.
+    */
     public function vendasView(){
 
         $pedidos = Pedido::all();
@@ -161,6 +174,8 @@ class AdminController extends Controller
         
         $categorias = CategoriaProduto::all();
 
+        // Aqui estamos calculando a quantidade de vendas de cada categoria, esses dados irão
+        // para o gráfico do Google Chart (Gráfico de pizza)
         foreach ($categorias as $categoria) {
             $categoria_nome[$categoria->id] = $categoria->nome;
 
@@ -171,12 +186,15 @@ class AdminController extends Controller
                 ->get();
         }
 
+        // Os 5 pedidos mais vendidos
         $top_5_vendidos = PedidoProduto::select('produto_id', DB::raw('count(*) as total'))
             ->groupBy('produto_id')
             ->orderByRaw('count(*) DESC')
             ->limit(5)
             ->get();
 
+        // Aqui calculamos qual foi o cliente que mais fez pedidos, e também os pedidos feitos em cada
+        // método de pagamento.
         if($pedidos->count() !== 0){
             //Calculando a quantidade de pedidos por cada método de pagamento
             $pedidos_metodo_pagamento_dinheiro = Pedido::where('metodo_pagamento_id', 1)->get()->count();
@@ -210,11 +228,16 @@ class AdminController extends Controller
 
         $total_vendido = 0;
 
+        // Aqui estamos organizando os dados de vendas por cada método de pagamento
+        // para poder enviá-los ao Google Chart (ele exige que os dados estejam dessa forma, e depois transformamos
+        // esse array em um formato Json para que ele possa ser lido no código JavaScript no fim da página de vendas)
         $vendasPorMetodoPagamento[] = ['Método de Pagamento', 'Quantidade de Pedidos'];
         $vendasPorMetodoPagamento[] = ["Dinheiro", $pedidos_metodo_pagamento_dinheiro];
         $vendasPorMetodoPagamento[] = ["Cartão de Crédito", $pedidos_metodo_pagamento_credito];
         $vendasPorMetodoPagamento[] = ["Cartão de Débito", $pedidos_metodo_pagamento_debito];
 
+        // Mesma coisa, estamos organizando os dados para o Google Chart em um array e depois transformamos em um
+        // Json para que possa ser lido no código JavaScript
         $res[] = ['Categoria', 'Quantidade Vendida'];
         foreach ($produtos_vendidos as $key => $val) {
             if($val[0]->qtd_vendida == null){
@@ -230,6 +253,7 @@ class AdminController extends Controller
             $res[$key] = ["$categoria_nome[$key]", intval($val[0]->qtd_vendida)];
         }
 
+        // Por fim, pegamos todas as variáveis e mandamos para a view.
         return view('admin.vendas')
             ->with('vendas', json_encode($res))
             ->with('qtd_pedidos_feitos', $qtd_pedidos_feitos)
