@@ -40,6 +40,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Rotas ADMIN
     Route::middleware(['admin'])->group(function () {
+        // Excluir cliente ou produto
+        Route::get('/admin/produto/{id}/excluir', [App\Http\Controllers\AdminController::class, 'excluirProduto'])
+            ->name('excluirProduto');
+        Route::get('/admin/cliente/{id}/excluir', [App\Http\Controllers\AdminController::class, 'excluirCliente'])
+            ->name('excluirCliente');
+
         Route::get('/admin/pedidos', [App\Http\Controllers\AdminController::class, 'pedidosView'])->name('pedidosAdminView');
         // Rotas de controle dos pedidos
         Route::get('admin/pedido/{id}/aceitar', [App\Http\Controllers\AdminController::class, 'aceitarPedido'])->name('aceitarPedido');

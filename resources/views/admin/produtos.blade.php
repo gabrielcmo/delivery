@@ -31,7 +31,7 @@
                                     <td>{{$produto->categoria->nome}}</td>
                                     <td>
                                         <a href="{{ route('editarProdutoView', $produto->id) }}"><i class="fas fa-edit"></i></a>
-                                        <a class="text-danger" href=""><i class="fas fa-trash"></i></a>
+                                        <a class="text-danger" href="{{ route('excluirProduto', $produto->id) }}"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

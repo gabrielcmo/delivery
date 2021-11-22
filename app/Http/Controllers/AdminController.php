@@ -278,4 +278,16 @@ class AdminController extends Controller
         return view('admin.clientes')
             ->with('clientes', $clientes);
     }
+
+    public function excluirProduto($id){
+        Produto::find($id)->delete();
+
+        return back()->with('success', "Produto excluído com sucesso!");
+    }
+
+    public function excluirCliente($id){
+        User::find($id)->delete();
+
+        return back()->with('success', "Cliente excluído com sucesso!");
+    }
 }

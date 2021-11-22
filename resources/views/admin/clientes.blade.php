@@ -34,7 +34,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('editarPerfilClienteView', $cliente->id) }}"><i class="fas fa-edit"></i></a>
-                                        <a class="text-danger" href=""><i class="fas fa-trash"></i></a>
+                                        <a class="text-danger" href="{{ route('excluirCliente', $cliente->id) }}"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
